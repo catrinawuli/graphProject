@@ -17,9 +17,17 @@ public class Graph {
 			Reader decoder = new InputStreamReader(gzipStream, "ASCII");
 			BufferedReader buffered = new BufferedReader(decoder);
 
+			int max = 10000;
 			String line;
-			while ((line = buffered.readLine())!= null) {
-				System.out.println(line);
+			for (int index = 0; (line = buffered.readLine()) != null && index < max; index++) {
+				String[] array = line.split("\\s+");
+				String id1 = array[0];
+				String id2 = array[1];
+				int lengthOfFirstContig = Integer.parseInt(array[7]);
+				int lengthOfSecondContig = Integer.parseInt(array[11]);
+				if (lengthOfFirstContig >= 1000 && lengthOfSecondContig >= 1000) {
+					System.out.println(id1 + " " + id2 + " " + lengthOfFirstContig + " " +lengthOfSecondContig);
+				}
 			}
 			buffered.close();
 		}
