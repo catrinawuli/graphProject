@@ -9,3 +9,6 @@ add filter to a limited sized data(10000) for length larger than 1000.
 
 # 2022-05-21
 create report including edges and degree distributions for 1000000 records.
+
+# 2022-05-22
+complete and format the report.

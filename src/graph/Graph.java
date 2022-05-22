@@ -8,8 +8,10 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.zip.GZIPInputStream;
 
 public class Graph {
@@ -20,8 +22,11 @@ public class Graph {
 
 	private Map<String, List<String>> adjacencyTable;
 
+	private Set<String> componentsWithAtLeastThreeVertices;
+
 	public Graph() {
 		adjacencyTable = new HashMap<String, List<String>>();
+		componentsWithAtLeastThreeVertices = new HashSet<String>();
 	}
 
 	private void addVertice(String id) {
@@ -37,6 +42,12 @@ public class Graph {
 		addVertice(id2);
 		this.adjacencyTable.get(id1).add(id2);
 		this.adjacencyTable.get(id2).add(id1);
+		if (this.adjacencyTable.get(id1).size() >= 3) {
+			this.componentsWithAtLeastThreeVertices.add(id1);
+		}
+		if (this.adjacencyTable.get(id2).size() >= 3) {
+			this.componentsWithAtLeastThreeVertices.add(id2);
+		}
 		this.edges++;
 	}
 
@@ -48,15 +59,20 @@ public class Graph {
 		return this.edges;
 	}
 
+	public int getNumberOfComponentsWithAtLeastThreeVertices() {
+		return this.componentsWithAtLeastThreeVertices.size();
+	}
+
 	public void histogram()	{
 		int max = 10; //return the first 10
 		int index = 1;
-		System.out.println("Histogram by the first " + max);
+		System.out.println("\nHistogram by the first " + max);
+		System.out.println("---------------------------------------------------------------");
 		for (Map.Entry<String, List<String>> entry : adjacencyTable.entrySet()) {
 			if (index++ > max) {
 				break;
 			}
-			System.out.println(entry.getKey() + " : " + entry.getValue().size());
+			System.out.printf("%-60s  %-10s%n", entry.getKey(), entry.getValue().size());
 		}
 	}
 
@@ -77,12 +93,12 @@ public class Graph {
 				int lengthOfFirstContig = Integer.parseInt(array[7]);
 				int lengthOfSecondContig = Integer.parseInt(array[11]);
 				if (lengthOfFirstContig >= 1000 && lengthOfSecondContig >= 1000) {
-//					System.out.println(id1 + " " + id2 + " " + lengthOfFirstContig + " " +lengthOfSecondContig);
 					graph.addEdge(id1, id2);
 				}
 			}
 			System.out.println("Total vertices: " + graph.getVertices() + " total edges: " + graph.getEdges() + " for first " + max + " records");
 			graph.histogram();
+			System.out.println("\nThe number of components of G with at least three vertices is " + graph.getNumberOfComponentsWithAtLeastThreeVertices());
 			buffered.close();
 		}
 		catch (IOException e) {
