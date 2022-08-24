@@ -1,20 +1,27 @@
-The datastructure in this project is the adjacency list.
+The data structure in this project is the adjacency list. Comparing to the adjacency matrix, the adjacency list can save some space.
 
-Comparing to the adjacency matrix, the adjacency list can save space.
+DFS algorithm is used to traversal the graph. It is tested on a simple version graph which i has created myself and works fine, then it is tested on the reduced data in the project. Because my computer has a limited memory, so i only run the algorithm on the first 1000000 contigs. But we can easily change the max whenever the computer has enough memory to run the full data.
 
+In order to check the neighbor of each vertices, a set is created to store the vertices which takes extra memory.
+Anyway the time complexity for the algorithm is O（V+E).
+ 
+The result is as below:
 Total vertices: 365194 total edges: 999889 for first 1000000 records
+The number of components of G with at least three vertices is 11971.
+The number of cliques in G is 15.
+The fraction of above components that are cliques is 0.0012530282.
 
-Histogram by the first 10
+Histogram --- the number of nodes with 1 - 10 neighbors
 ---------------------------------------------------------------
-fp.3.Luci_99A25.ctg.ctg7180002013436                          1         
-fp.3.Luci_03F02.ctg.ctg7180000025270                          1         
-fp.3.Luci_51A04.ctg.ctg7180000378977                          7         
-fp.3.Luci_03F02.ctg.ctg7180000025277                          1         
-fermi15053360211_15352050296                                  1         
-fp.3.Luci_17A08.ctg.ctg7180000200043                          1         
-fp.3.Luci_04H05.ctg.ctg7180000161709                          6         
-fp.3.Luci_52G02.ctg.jtg7180000574854f_7180000369127f          2         
-contig_5606433                                                1         
-fp.3.Luci_17F06.ctg.ctg7180000129764                          1         
+1         219699    
+2         33067     
+3         14592     
+4         11667     
+5         10327     
+6         10241     
+7         9994      
+8         10008     
+9         8285      
+10        6878         
 
-The number of components of G with at least three vertices is 113258
+
