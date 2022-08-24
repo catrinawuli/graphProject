@@ -8,10 +8,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -108,16 +106,6 @@ public class Graph {
 		for (int i = 1; i <= 10; i++) {
 			System.out.printf("%-8s  %-10d%n", i, Collections.frequency(new ArrayList<Integer>(converted.values()), i));
 		}
-//		int max = 10; //return the first 10
-//		int index = 1;
-//		System.out.println("\nHistogram by the first " + max);
-//		System.out.println("---------------------------------------------------------------");
-//		for (Map.Entry<String, List<String>> entry : adjacencyTable.entrySet()) {
-//			if (index++ > max) {
-//				break;
-//			}
-//			System.out.printf("%-60s  %-10s%n", entry.getKey(), entry.getValue().size());
-//		}
 	}
 
 	public static void main(String[] args) {
